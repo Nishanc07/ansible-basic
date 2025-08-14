@@ -1,0 +1,19 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Start and enable Nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Create basic index page
+  copy:
+    content: "Welcome to Nginx installed by Ansible"
+    dest: /var/www/html/index.nginx-debian.html
+  notify:
+    - restart nginx

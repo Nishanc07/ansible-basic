@@ -1,0 +1,10 @@
+---
+- name: Install and configure infrastructure services
+  hosts: azure_vm
+  become: yes
+  gather_facts: yes
+
+  roles:
+    - nginx
+    - mysql
+    - docker_swarm

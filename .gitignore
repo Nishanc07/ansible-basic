@@ -1,0 +1,68 @@
+# Standard Ansible ignores
+*.retry
+*.swp
+.vagrant/
+*.log
+
+# Ansible vault and sensitive files
+*.vault
+*.vault.yml
+vault.yml
+secrets/
+!vault.yml.example
+
+# Environment-specific files
+.env
+*.env
+ansible.cfg
+host_vars/*
+!host_vars/.keep
+group_vars/*
+!group_vars/.keep
+
+# SSH and key files
+*.pem
+*.ppk
+*.key
+id_rsa*
+*.cer
+*.crt
+*.csr
+*.pub
+
+# Python and virtual environment
+__pycache__/
+*.pyc
+venv/
+.python-version
+.pytest_cache/
+
+# IDE specific files
+.idea/
+.vscode/
+*.code-workspace
+
+# macOS specific
+.DS_Store
+
+# Terraform (if used)
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Docker specific
+docker-compose.override.yml
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+logs/
+
+# Ansible galaxy
+*.tar.gz
+
+# Local inventory overrides
+inventory/local/
