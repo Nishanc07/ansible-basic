@@ -44,21 +44,23 @@ my_azure_vm ansible_host=<VM_IP> ansible_user=azureuser ansible_ssh_private_key_
 
 ```
 ansible-playbook -i inventory/hosts playbook.yml
-
 ```
 
 After running, log out and back in on the VM so the docker group membership takes effect.
 
 ##Verification
 
-1. Verify Nginx by opening http://<VM_IP> in a browser.
+1. Verify Nginx by opening http://<VM_IP> in a browser or
+
+```
+sudo systemctl status nginx
+```
 
 2. Verify Docker Swarm:
 
 ```
 docker info | grep -i swarm
 docker node ls
-
 ```
 
 output: Swarm: active
