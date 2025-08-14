@@ -73,4 +73,4 @@ sudo systemctl status mysql
 
 Look for active (running) in the output.
 
-![verification](image_path_or_URL)
+![verification](https://github.com/Nishanc07/ansible-basic/blob/main/public/verification.png)
