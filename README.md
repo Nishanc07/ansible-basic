@@ -76,3 +76,32 @@ sudo systemctl status mysql
 Look for active (running) in the output.
 
 ![verification](https://github.com/Nishanc07/ansible-basic/blob/main/public/verification.png)
+
+### Database setup
+
+1. MySQL Setup
+
+- Installed MySQL server using Ansible (apt module).
+- Started and enabled the MySQL service.
+- Installed the PyMySQL connector for Ansible compatibility.
+- Created a MySQL database (mydb) and a user (mysql) with all privileges on that database.
+- Verified connection to MySQL using:
+
+```
+mysql -u mysql -p -h localhost
+```
+
+2. PostgreSQL Setup
+
+- Installed PostgreSQL packages (postgresql, postgresql-contrib, libpq-dev) via Ansible.
+- Ensured PostgreSQL service is running and enabled.
+- Set a password for the default postgres superuser safely.
+- Created a PostgreSQL database (mypgdb) and a user (nisha) with login privileges.
+- Granted all privileges on mypgdb to user nisha.
+- Verified connection to PostgreSQL using:
+
+```
+psql -U nisha -d mypgdb -h localhost
+```
+
+Note: Using -h localhost forces password-based authentication instead of peer authentication.
