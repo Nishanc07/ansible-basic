@@ -1,0 +1,19 @@
+- name: Verify DB connections
+  hosts: db_servers
+  become: yes
+  tasks:
+    - name: Test MySQL connection
+      command: mysql -u ansible_user -pansible_pass -e "SHOW DATABASES;"
+      register: mysql_test
+      ignore_errors: yes
+
+    - debug:
+        var: mysql_test.stdout_lines
+
+    - name: Test PostgreSQL connection
+      command: psql -U ansible_user -d ansible_db -h localhost -c "\l"
+      register: postgres_test
+      ignore_errors: yes
+
+    - debug:
+        var: postgres_test.stdout_lines

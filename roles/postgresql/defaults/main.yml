@@ -1,0 +1,5 @@
+---
+postgres_admin_password: "postgres123" # Change in production!
+postgres_db_name: "mypgdb"
+postgres_app_user: "nisha"
+postgres_app_password: "nisha123" # Change in production!

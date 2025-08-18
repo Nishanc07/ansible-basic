@@ -1,0 +1,48 @@
+---
+- name: Install PostgreSQL packages
+  apt:
+    name:
+      - postgresql
+      - postgresql-contrib
+      - libpq-dev
+      - python3-psycopg2
+    state: present
+    update_cache: yes
+
+- name: Ensure PostgreSQL service is running
+  service:
+    name: postgresql
+    state: started
+    enabled: yes
+
+- name: Set postgres password (safe method)
+  command: >
+    sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '{{ postgres_admin_password }}';"
+  become: true
+  changed_when: false # Makes it idempotent
+
+- name: Create application database
+  command: >
+    sudo -u postgres psql -c "CREATE DATABASE {{ postgres_db_name }} OWNER postgres;"
+  become: true
+  ignore_errors: yes
+  changed_when: false
+
+- name: Ensure application user exists
+  command: >
+    sudo -u postgres psql -c "DO
+    $$
+    BEGIN
+      IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname='{{ postgres_app_user }}') THEN
+        CREATE ROLE {{ postgres_app_user }} LOGIN PASSWORD '{{ postgres_app_password }}';
+      END IF;
+    END
+    $$;"
+  become: true
+  changed_when: false
+
+- name: Grant privileges
+  command: >
+    sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE {{ postgres_db_name }} TO {{ postgres_app_user }};"
+  become: true
+  changed_when: false

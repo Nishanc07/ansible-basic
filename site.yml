@@ -1,6 +1,6 @@
 ---
-- name: Configure Docker Swarm on Azure VMs
-  hosts: azure_vm
+- hosts: db_servers
   become: yes
   roles:
-    - docker_swarm # This references the role directory name
+    - mysql
+    - postgresql

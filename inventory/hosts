@@ -1,6 +1,10 @@
 [azure_vm]
-my_azure_vm ansible_host=98.70.13.129 ansible_user=azureuser ansible_ssh_private_key_file=/Users/ansible_key.pem
+my_azure_vm ansible_host=98.70.37.212 ansible_user=azureuser ansible_ssh_private_key_file=/Users/db_key.pem
 
 [azure_vm:vars]
 ansible_python_interpreter=/usr/bin/python3
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+ansible_mysql_python=PyMySQL
+
+[myservers]
+my_azure_vm ansible_host=98.70.37.212  ansible_user=azureuser ansible_become=true ansible_become_method=sudo ansible_python_interpreter=/usr/bin/python3 ansible_become_flags='-H -S -n'

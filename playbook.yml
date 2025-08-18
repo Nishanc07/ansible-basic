@@ -8,3 +8,4 @@
     - nginx
     - mysql
     - docker_swarm
+    - postgresql
